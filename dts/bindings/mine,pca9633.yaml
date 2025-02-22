@@ -1,0 +1,10 @@
+# Copyright (c) 2018, Linaro Limited
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+  RGB backlight controller
+
+compatible: "mine,pca9633"
+
+include: ["i2c-device.yaml", "base.yaml"]
+

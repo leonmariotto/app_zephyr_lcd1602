@@ -1,0 +1,32 @@
+#include <zephyr/dt-bindings/pinctrl/stm32f1-pinctrl.h>
+#include <zephyr/dt-bindings/pinctrl/stm32-pinctrl.h>
+#include <zephyr/dt-bindings/gpio/gpio.h>
+#include <zephyr/dt-bindings/i2c/i2c.h>
+
+/ {
+    aliases {
+            yled = &yellow_led_1;
+            gled = &green_led_1;
+            rled = &red_led_1;
+    };
+};
+
+&i2c1 {
+	status = "okay";
+    compatible = "st,stm32-i2c-v2";
+    clock-frequency = <I2C_BITRATE_STANDARD>;
+
+	aip31068l: aip31068l@3e {
+        status = "okay";
+		compatible = "mine,aip31068l";
+		reg = <0x3e>;
+		cursor = <0>;
+		blink = <0>;
+    };
+
+	pca9633: pca9633@60 {
+        status = "okay";
+		compatible = "mine,pca9633";
+		reg = <0x60>;
+    };
+};

@@ -1,0 +1,22 @@
+# Copyright (c) 2018, Linaro Limited
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+  Characters display controller
+
+compatible: "mine,aip31068l"
+
+include: [i2c-device.yaml]
+
+properties:
+    cursor:
+        type: int
+        default: 0
+        description: |
+            Cursor will appear as an underscore.
+
+    blink:
+        type: int
+        default: 0
+        description: |
+            Text blink
