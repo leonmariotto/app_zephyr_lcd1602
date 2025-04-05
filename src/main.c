@@ -35,28 +35,28 @@ int putstr(const struct device *const charcontroller, char *str)
 int main(void)
 {
     printk("#### Hello from i2c test app ! ####\n");
-	if (!gpio_is_ready_dt(&red_led)
-        || !gpio_is_ready_dt(&green_led)
-        || !gpio_is_ready_dt(&yellow_led)) {
-		return 0;
-	}
+    if (!gpio_is_ready_dt(&red_led)
+            || !gpio_is_ready_dt(&green_led)
+            || !gpio_is_ready_dt(&yellow_led)) {
+        return 0;
+    }
 
     const struct device *const backlight = DEVICE_DT_GET_ANY(mine_pca9633);
-	if (!device_is_ready(backlight)) {
-		printk("Device %s is not ready\n", backlight->name);
+    if (!device_is_ready(backlight)) {
+        printk("Device %s is not ready\n", backlight->name);
         return 0;
-	}
+    }
     pca9633_configure(backlight);
     const struct device *const charcontroller = DEVICE_DT_GET_ANY(mine_aip31068l);
-	if (!device_is_ready(charcontroller)) {
-		printk("Device %s is not ready\n", charcontroller->name);
+    if (!device_is_ready(charcontroller)) {
+        printk("Device %s is not ready\n", charcontroller->name);
         return 0;
-	}
+    }
 
-	if (gpio_pin_configure_dt(&red_led, GPIO_OUTPUT_ACTIVE) < 0
-	    || gpio_pin_configure_dt(&yellow_led, GPIO_OUTPUT_ACTIVE) < 0
-	    || gpio_pin_configure_dt(&green_led, GPIO_OUTPUT_ACTIVE) < 0) {
-		return 0;
+    if (gpio_pin_configure_dt(&red_led, GPIO_OUTPUT_ACTIVE) < 0
+            || gpio_pin_configure_dt(&yellow_led, GPIO_OUTPUT_ACTIVE) < 0
+            || gpio_pin_configure_dt(&green_led, GPIO_OUTPUT_ACTIVE) < 0) {
+        return 0;
     }
 
     char *str = "Hello World !";
@@ -81,32 +81,32 @@ int main(void)
         0b11110101,
         0b11101010,
     };
-    
+
     putstr(charcontroller, str);
     pca9633_set_rgb(backlight, 255, 0, 0);
-	k_msleep(1000);
+    k_msleep(1000);
     aip31068l_cursor_home(charcontroller);
-	k_msleep(1000);
+    k_msleep(1000);
     aip31068l_cursor_set(charcontroller, 5, 0);
     aip31068l_putc(charcontroller, '4');
     aip31068l_putc(charcontroller, '2');
-	k_msleep(1000);
+    k_msleep(1000);
     aip31068l_cursor_set(charcontroller, 5, 1);
     aip31068l_putc(charcontroller, '4');
     aip31068l_putc(charcontroller, '2');
-	k_msleep(1000);
+    k_msleep(1000);
     aip31068l_set_cg(charcontroller, 0, custom_char);
     aip31068l_putc(charcontroller, 0);
-	k_msleep(1000);
+    k_msleep(1000);
     // aip31068l_cursor_set(charcontroller, 5, 0);
     // aip31068l_putc(charcontroller, 0);
     // aip31068l_putc(charcontroller, 0);
-	// k_msleep(1000);
+    // k_msleep(1000);
     // aip31068l_clear_screen(charcontroller);
-	// k_msleep(1000);
+    // k_msleep(1000);
     // aip31068l_cursor_set(charcontroller, 10, 0);
     // aip31068l_putc(charcontroller, 0);
-	// k_msleep(1000);
+    // k_msleep(1000);
     aip31068l_set_cg(charcontroller, 1, custom_char_v2);
     aip31068l_cursor_home(charcontroller);
     // There is 30 char space, so this string leave 4 space.
@@ -119,14 +119,14 @@ int main(void)
     aip31068l_putc(charcontroller, 0);
     aip31068l_putc(charcontroller, 1);
 
-	while (1) {
-		gpio_pin_toggle_dt(&red_led);
-		k_msleep(SLEEP_TIME_MS);
-		gpio_pin_toggle_dt(&yellow_led);
-		k_msleep(SLEEP_TIME_MS);
-		gpio_pin_toggle_dt(&green_led);
-		k_msleep(SLEEP_TIME_MS);
+    while (1) {
+        gpio_pin_toggle_dt(&red_led);
+        k_msleep(SLEEP_TIME_MS);
+        gpio_pin_toggle_dt(&yellow_led);
+        k_msleep(SLEEP_TIME_MS);
+        gpio_pin_toggle_dt(&green_led);
+        k_msleep(SLEEP_TIME_MS);
         aip31068l_display_shift(charcontroller, 1);
-	}
-	return 0;
+    }
+    return 0;
 }

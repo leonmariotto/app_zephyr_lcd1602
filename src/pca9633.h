@@ -11,8 +11,8 @@
 
 int pca9633_configure(const struct device *dev);
 int pca9633_set_rgb(const struct device *dev,
-    uint8_t r,
-    uint8_t g,
-    uint8_t b);
+        uint8_t r,
+        uint8_t g,
+        uint8_t b);
 
 #endif /* PCA9633_H */
