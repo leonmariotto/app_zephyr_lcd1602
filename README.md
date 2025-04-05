@@ -126,7 +126,7 @@ sudo cp $WORKSPACE/zephyr-sdk-0.16.8/sysroots/x86_64-pokysdk-linux/usr/share/ope
 sudo udevadm control --reload
 ```
 
-# Note on debug with nucleo-stm32h563
+## Note on debug with nucleo-stm32h563
 
 Use the ST-modified openocd. <br>
 First, launch gdbserver through openocd. <br>
