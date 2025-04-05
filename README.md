@@ -31,6 +31,8 @@ And the correspondings yaml bindings. <br>
 ## Setup
 I've connected it to 3.3v, GND, SCL:PB8, SDA:PB9 on a nucleo-144 (see MB1404) (nucleo_h563zi) <br>
 
+![Screenshot from 2025-04-05 15-35-24](https://github.com/user-attachments/assets/044ee460-6ba9-4962-a19d-d40960b4e989)
+
 ## Howto
 See install note for installation instruction. <br>
 Once installed, before running west, user need to : <br>
